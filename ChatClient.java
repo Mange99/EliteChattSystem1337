@@ -39,7 +39,7 @@ public class ChatClient {
     /**
      * Constructs the client by laying out the GUI and registering a
      * listener with the textfield so that pressing Return in the
-     * listener sends the textfield contents to the server.  Note
+     * listener sends the textfield contesnts to the server.  Note
      * however that the textfield is initially NOT editable, and
      * only becomes editable AFTER the client receives the NAMEACCEPTED
      * message from the server.
@@ -49,7 +49,7 @@ public class ChatClient {
         // Layout GUI
         textField.setEditable(false);
         messageArea.setEditable(false);
-        frame.getContentPane().add(textField, "North");
+        frame.getContentPane().add(textField, "South");
         frame.getContentPane().add(new JScrollPane(messageArea), "Center");
         frame.pack();
 
@@ -61,8 +61,10 @@ public class ChatClient {
              * the text area in preparation for the next message.
              */
             public void actionPerformed(ActionEvent e) {
-                out.println(textField.getText());
-                textField.setText("");
+            	if(!textField.getText().equalsIgnoreCase("")) {
+            		out.println(textField.getText());
+            		textField.setText("");
+            	}
             }
         });
     }
